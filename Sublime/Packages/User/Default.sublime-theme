@@ -1,0 +1,21 @@
+{
+    "variables":
+    {
+        "font_face": "system",
+    },
+    "rules":
+    [
+        {
+            "class": "tab_label",
+            "font.size": 13,
+        },
+        {
+            "class": "label_control",
+            "font.size": 14,
+        },
+        {
+            "class": "sidebar_label",
+            "font.size": 13
+        }
+    ]
+}

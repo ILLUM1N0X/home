@@ -1,0 +1,19 @@
+{
+	"auto_upgrade": false,
+	"bootstrapped": true,
+	"http_proxy": "http://proxy-dmz.intel.com:911",
+	"https_proxy": "http://proxy-dmz.intel.com:912",
+	"ignore_vcs_packages": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"Material Theme",
+		"Package Control",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-flake8"
+	],
+}
