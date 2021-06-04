@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+
+sub init {
+    $delimiter = "[ \t]";
+    @indices = ();
+    $include_empty = 0;
+    for (my $i = 0 ; $i <= $#ARGV; $i++) {
+        if ($ARGV[$i] eq "-d") {
+            $i++;
+            ($i <= $#ARGV) ? $delimiter = $ARGV[$i] : print_usage();
+        } elsif ($ARGV[$i] =~ /^\d+$/) {
+            push(@indices, $ARGV[$i] - 1) unless ($ARGV[$i] == 0);
+        } elsif ($ARGV[$i] =~ /^\-\d+$/) {
+            push(@indices, $ARGV[$i]);
+        } elsif ($ARGV[$i] =~ /^(\d+)\-(\d+)$/) {
+            push(@indices, ($1-1..$2-1));
+        } elsif ($ARGV[$i] eq "-include_empty" || $ARGV[$i] eq "-ie") {
+            $include_empty = 1;
+        } else {
+            print_usage();
+        }
+    }
+}
+
+sub run {
+    while (my $line = <STDIN>) {
+        chomp($line);
+        my @line_fields = ($include_empty) ? split(/$delimiter/, $line, -1) : grep(/\S/, split(/$delimiter/, $line, -1));
+        foreach my $index (@indices) { print($line_fields[$index] . " ");}
+        print("\n");
+    }
+}
+
+sub print_usage {
+    print("Usage: item <list of fields> [-d <delimeter>] [-include_empty|ie]\n");
+    print("               e.g. Input: '10   20 30 50  100'\n");
+    print("               [reversed order]       Command: 'item 2 1'           Output: '20 10'\n");
+    print("               [range of indices]     Command: 'item 3-5'           Output: '30 50 100'\n");
+    print("               [negative indices]     Command: 'item -1 -4'         Output: '100 20'\n");
+    print("               e.g. Input: '10, 20,,, 30.50, 100'\n");
+    print("               [custom delimiter]     Command: 'item -d \",\" 3'      Output: ' 30.50'\n");
+    print("               [include empty]        Command: 'item -ie -d \",\" 5'  Output: ' 30.50'\n");
+    print("               [multiple delimiters]  Command: 'item -d \"[.,]\" 2 4' Output: ' 20 50'\n");
+    exit(0);
+}
+
+init();
+run();
