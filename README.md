@@ -1,2 +1,2 @@
 # config-files
-My Ccnfig files
+My Config files
