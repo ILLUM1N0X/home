@@ -7,6 +7,8 @@ bind 'set match-hidden-files off'
 bind 'set show-all-if-ambiguous on'
 # tab completion ignores case
 bind 'set completion-ignore-case off'
+# tab completion recognizes directories in symbolic links
+bind 'set mark-symlinked-directories on'
 # send EOF after the 11th Ctrl-D
 set -o ignoreeof
 # disable '^C' from being echoed when pressing Ctrl-C
