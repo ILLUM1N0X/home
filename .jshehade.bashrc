@@ -25,7 +25,7 @@ export PS1="\[$(tput setaf 118)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
 # do not complete commands from Windows
 export EXECIGNORE="/mnt/c/*"
 # less flags
-export LESS="--tab=4 -~ -MRiS -j 1 --shift 4 +g"
+export LESS="--tab=4 -~ -MRiS -j 1 --shift 4"
 #export LESSOPEN="|pygmentize %s"
 # python shell
 export PYTHONSTARTUP="$HOME/.python_startup"
