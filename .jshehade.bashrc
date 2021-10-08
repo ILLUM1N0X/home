@@ -97,3 +97,38 @@ function =() {
     args=`echo "$@" | tr '[{' '(' | tr ']}' ')'`
     perl -le "print(eval($args))"
 }
+
+# function fuzzypath() {
+#     local DIRNAME=$(echo "$2" | sed 's|[^/]*$||' | sed "s|~|$HOME|")
+#     local FILTER=$(echo "$2" | sed 's|.*/||' | sed 's|[[:alnum:]_-]|*\0*|g')
+#     local SUFFIX=$([[ "$1" == "cd" ]] && echo "*/" || echo "*")
+#     local IFS=$'\n'
+#     shopt -s nocaseglob
+#     COMPREPLY=($({ \ls -1 -d $DIRNAME$FILTER$SUFFIX | sed "s|/*$||g"; } 2> /dev/null ))
+#     shopt -u nocaseglob
+# }
+
+function fuzzypath() {
+    local DIRNAME=$(echo "$2" | sed 's|[^/]*$||')
+    if [[ $DIRNAME =~ ^~ ]]; then
+        echo "\nTILDE~"
+        local TILDE_USER=$(echo "$DIRNAME" | sed 's|\(~[^/]*/\).*|\1|')
+        echo "TILDE_USER = $TILDE_USER"
+        local TILDE_EXPANSION=$(eval \\ls -d $TILDE_USER 2> /dev/null)
+        echo "TILDE_EXPANSION = $TILDE_EXPANSION"
+        echo "DIRNAME before = $DIRNAME"
+        DIRNAME=$(echo "$DIRNAME" | sed 's|~[^/]*/||')
+        DIRNAME="${TILDE_EXPANSION}${DIRNAME}"
+        echo "DIRNAME after = $DIRNAME"
+    fi
+    local FILTER=$(echo "$2" | sed 's|.*/||' | sed 's|[[:alnum:]_-]|*\0*|g')
+    local SUFFIX=$([[ "$1" == "cd" ]] && echo "*/" || echo "*")
+    local IFS=$'\n'
+    shopt -s nocaseglob
+    COMPREPLY=($({ \ls -1 -d $DIRNAME$FILTER$SUFFIX | sed "s|/*$||g"; } 2> /dev/null ))
+    shopt -u nocaseglob
+}
+
+# fuzzy tab completion
+#complete -o filenames -F fuzzypath ls ll la less l
+#complete -o filenames -F fuzzypath cd
