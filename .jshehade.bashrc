@@ -28,7 +28,7 @@ export EXECIGNORE="/mnt/c/*"
 export LESS="--tab=4 -~ -MRiS -j 1 --shift 4"
 #export LESSOPEN="|pygmentize %s"
 # python shell
-export PYTHONSTARTUP="$HOME/.python_startup"
+export PYTHONSTARTUP="$HOME/.pystartup"
 
 ###################################################################################################
 # Key Bindings
