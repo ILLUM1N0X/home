@@ -9,6 +9,8 @@ bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case off'
 # tab completion recognizes directories in symbolic links
 bind 'set mark-symlinked-directories on'
+# pasting does not highlight text
+bind "set enable-bracketed-paste off"
 # send EOF after the 11th Ctrl-D
 set -o ignoreeof
 # disable '^C' from being echoed when pressing Ctrl-C
@@ -22,6 +24,12 @@ stty -ctlecho
 # for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
 export PS1="\[$(tput setaf 118)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
 #export PS1="\[$(tput setaf 76)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
+export PS1=\
+"\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)\]\
+\[$(tput setab 39)$(tput setaf 0)\]  \w/ \
+\$(__git_branch_prompt)\
+\[$(tput sgr0)$(tput setaf 118)\]\n❯\
+\[$(tput sgr0)\] "
 # do not complete commands from Windows
 export EXECIGNORE="/mnt/c/*"
 # less flags
@@ -29,6 +37,8 @@ export LESS="--tab=4 -~ -MRiS -j 1 --shift 4"
 #export LESSOPEN="|pygmentize %s"
 # python shell
 export PYTHONSTARTUP="$HOME/.pystartup"
+# limit displayed entries in directory hierarchy
+export PROMPT_DIRTRIM=3
 
 ###################################################################################################
 # Key Bindings
@@ -96,6 +106,15 @@ function cd() {
 function =() {
     args=`echo "$@" | tr '[{' '(' | tr ']}' ')'`
     perl -le "print(eval($args))"
+}
+
+function __git_branch_prompt () {
+    local BR=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ ! -z $BR ]]; then
+        echo "$(tput setab 47)$(tput setaf 39)$(tput setab 47)$(tput setaf 0)  $BR $(tput sgr0)$(tput setaf 47)"
+    else
+        echo "$(tput sgr0)$(tput setaf 39)"
+    fi
 }
 
 # function fuzzypath() {
