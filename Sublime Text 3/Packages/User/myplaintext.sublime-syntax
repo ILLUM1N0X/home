@@ -6,17 +6,23 @@ file_extensions: [txt]
 scope: source.txt
 contexts:
   main:
-    # Line starting with # as comment
+
+    # Line starting with # is a comment
     - match: '(^\s*\#.*$)'
       captures:
         1: punctuation.definition.comment
 
-    # Words surrounded by ?
+    # Words wrapped with * are titles
+    - match: '(\*.+?\*)'
+      captures:
+        1: punctuation.definition
+
+    # Words surrounded by ? are variables
     - match: '(\?.+?\?)'
       captures:
         1: variable.language
 
-    # Words surrounded by square brackets
+    # Words surrounded by square brackets are optional
     - match: '(\[.+?\])'
       captures:
-        1: keyword.operator.word
+        1: constant.numeric
