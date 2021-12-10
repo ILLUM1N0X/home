@@ -27,7 +27,7 @@
     dtadd = dt --staged
     unadd = reset
     head  = rev-parse --short HEAD
-    lg    = log --color --graph --pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset %C(bold blue)%al%Creset -%C(yellow)%d%Creset %s' --abbrev-commit --all --date=format:'%y-%m-%d %H:%M:%S'
+    lg     = log --decorate --color --graph --pretty=format:'%C(auto)%h %C(green)[%cd] %C(bold blue)%al%C(reset) -%C(auto)%d %s' --abbrev-commit --all --date=format:'%y-%m-%d %H:%M:%S'
     lgme  = lg --author=johnny.shehade@gmail.com
 [user]
     email = johnny.shehade@gmail.com
