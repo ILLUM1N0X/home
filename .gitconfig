@@ -12,23 +12,27 @@
     co    = checkout
     br    = branch
     dt    = difftool
-    df    = difftool
+    df    = !git diff --color=always | less -p "^diff.*"
     st    = status
     who   = shortlog -n -s --no-merges
     hist  = log --follow --
     cmt   = commit
     uncmt = reset --soft HEAD^
     rmcmt = reset --hard 
-    cmtls = diff-tree --name-status -r
-    cmtdf = !git difftool $1~
-    adddf = df --staged
+    lscmt = diff-tree --name-status -r
+    dfcmt = "!f() { git diff --color=always "$1"~ "$@" | less -p "^diff.*"; }; f"
+    dtcmt = !git dt $1~
+    recmt = cmt --amend
+    dfadd = !git diff --staged --color=always | less -p "^diff.*"
+    dtadd = dt --staged
     unadd = reset
-    mrgrq = !git push -f origin git rev-parse --abbrev-ref HEAD
-    prcmt = rev-parse --short HEAD
-    lg    = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    mlg   = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --author=johnny.shehade@intel.com
+    head  = rev-parse --short HEAD
+    lg    = log --color --graph --pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset %C(bold blue)%al%Creset -%C(yellow)%d%Creset %s' --abbrev-commit --all --date=format:'%y-%m-%d %H:%M:%S'
+    lgme  = lg --author=johnny.shehade@gmail.com
 [user]
     email = johnny.shehade@gmail.com
     name = "Johnny Shehade"
+[pull]
+    rebase = true
 [pager]
     branch = false
