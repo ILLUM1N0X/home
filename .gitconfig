@@ -12,7 +12,7 @@
     co    = checkout
     br    = branch
     dt    = difftool
-    df    = !git diff --color=always | less -p "^diff.*"
+    df     = "!f() { git diff --color=always "$@" | less -p "^diff.*"; }; f"
     st    = status
     who   = shortlog -n -s --no-merges
     hist  = log --follow --
