@@ -17,23 +17,48 @@ set -o ignoreeof
 stty -ctlecho
 
 ###################################################################################################
-# Environment Variables
+# Prompt
 ###################################################################################################
-# prompt
 # print all tput colors
 # for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
-export PS1="\[$(tput setaf 118)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
+PS1="\[$(tput setaf 118)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
 #export PS1="\[$(tput setaf 76)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
-export PS1=\
+PS1=\
 "\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)\]\
 \[$(tput setab 39)$(tput setaf 0)\]  \w/ \
 \$(__git_branch_prompt)\
 \[$(tput sgr0)$(tput setaf 118)\]\n❯\
 \[$(tput sgr0)\] "
+function __git_branch_prompt() {
+    local BR=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ ! -z $BR ]]; then
+        # echo " $BR "
+        echo " $BR "
+    fi
+}
+# print all tput colors
+# for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
+# export PS1="\[$(tput setab 237)\]\[$(tput setaf 12)\]\W/\[$(tput setaf 141)\]\$(__git_ps1 '  %s')\[$(tput sgr0)$(tput setaf 118)\] ❯\[$(tput sgr0)\] "
+# export PS1="\[$(tput setab 237)\]\[$(tput setaf 12)\]\W/\[$(tput setaf 3)\]\$(__git_ps1 '  %s')\[$(tput sgr0)$(tput setaf 118)\] ❯\[$(tput sgr0)\] "
+# export PS1="\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)\]\[$(tput setab 39)$(tput setaf 0)\]  \w/ \$(__git_branch_prompt)\[$(tput sgr0)$(tput setaf 118)\]\n❯\[$(tput sgr0)\] "
+# export PS1="\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ \$(__git_branch_prompt)\[$(tput sgr0)\] "
+# export PS1="\[$(tput rev)$(tput setaf 47)\]\[$(tput sgr0)$(tput setab 47)$(tput setaf 0)\]  \w/ \[$(tput sgr0)$(tput setaf 47)\]\[$(tput sgr0)\] "
+PS1="\[$(tput rev)$(tput setaf 39)\]"
+PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+PS1+="\[$(tput setab 47)$(tput setaf 39)\]"
+PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
+PS1+="\[$(tput sgr0)$(tput setaf 47)\]"
+PS1+="\[$(tput sgr0)\] "
+
+###################################################################################################
+# Environment Variables
+###################################################################################################
+# prompt
+export PS1
 # do not complete commands from Windows
 export EXECIGNORE="/mnt/c/*"
 # less flags
-export LESS="--tab=4 -~ -MRiS -j 1 --shift 4"
+export LESS="--tab=4 -~ -MRiS -j 1 --shift 4 -I"
 #export LESSOPEN="|pygmentize %s"
 # python shell
 export PYTHONSTARTUP="$HOME/.pystartup"
