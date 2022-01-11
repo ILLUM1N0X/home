@@ -121,7 +121,8 @@ alias     got='git'
 # Functions
 ###################################################################################################
 function ff() {
-    find "$@" -type f
+    local ARGS=$([[ $# == 0 ]] && echo "." || echo "$@")
+    eval find "$ARGS" -type f
 }
 
 function cd() {
