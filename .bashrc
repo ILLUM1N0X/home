@@ -61,7 +61,7 @@ export EXECIGNORE="/mnt/c/*"
 export LESS="--tab=4 -~ -MRiS -j 1 --shift 4 -I"
 #export LESSOPEN="|pygmentize %s"
 # python shell
-export PYTHONSTARTUP="$HOME/.pystartup"
+export PYTHONSTARTUP=~/.config/python/pystartup
 # limit displayed entries in directory hierarchy
 export PROMPT_DIRTRIM=3
 
