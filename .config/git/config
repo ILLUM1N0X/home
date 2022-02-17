@@ -11,6 +11,7 @@
 [alias]
     co    = checkout
     br    = branch
+    mvbr   = br -m
     dt    = difftool
     df     = "!f() { git diff --color=always "$@" | less -p "^diff.*"; }; f"
     st    = status
@@ -19,16 +20,17 @@
     cmt   = commit
     uncmt = reset --soft HEAD^
     rmcmt = reset --hard 
-    lscmt = diff-tree --name-status -r
-    dfcmt = "!f() { git diff --color=always "$1"~ "$@" | less -p "^diff.*"; }; f"
+    lscmt = "!f() { git diff-tree --name-status -r "${@:-head}"; }; f"
+    dfcmt  = "!f() { git diff --color=always "${1:-head}"~ "${@:-head}" | less -p "^diff.*"; }; f"
     dtcmt = !git dt $1~
     recmt = cmt --amend
-    dfadd = !git diff --staged --color=always | less -p "^diff.*"
+    dfadd  = "!f() { git diff --color=always --staged "$@" | less -p "^diff.*"; }; f"
     dtadd = dt --staged
     unadd = reset
-    head  = rev-parse --short HEAD
     lg     = log --decorate --color --graph --pretty=format:'%C(auto)%h %C(green)[%cd] %C(bold blue)%al%C(reset) -%C(auto)%d %s' --abbrev-commit --all --date=format:'%y-%m-%d %H:%M:%S'
     lgme  = lg --author=johnny.shehade@gmail.com
+    upd   = !git co master && git pull && git co - && git rebase master
+    head  = rev-parse --short HEAD
 [user]
     email = johnny.shehade@gmail.com
     name = "Johnny Shehade"
