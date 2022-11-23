@@ -36,15 +36,12 @@ function __git_branch_prompt() {
         echo " $BR "
     fi
 }
+# find more icons at: https://fontawesome.com/search
 # print all tput colors
 # for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
-# export PS1="\[$(tput setab 237)\]\[$(tput setaf 12)\]\W/\[$(tput setaf 141)\]\$(__git_ps1 '  %s')\[$(tput sgr0)$(tput setaf 118)\] ❯\[$(tput sgr0)\] "
-# export PS1="\[$(tput setab 237)\]\[$(tput setaf 12)\]\W/\[$(tput setaf 3)\]\$(__git_ps1 '  %s')\[$(tput sgr0)$(tput setaf 118)\] ❯\[$(tput sgr0)\] "
-# export PS1="\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)\]\[$(tput setab 39)$(tput setaf 0)\]  \w/ \$(__git_branch_prompt)\[$(tput sgr0)$(tput setaf 118)\]\n❯\[$(tput sgr0)\] "
-# export PS1="\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ \$(__git_branch_prompt)\[$(tput sgr0)\] "
-# export PS1="\[$(tput rev)$(tput setaf 47)\]\[$(tput sgr0)$(tput setab 47)$(tput setaf 0)\]  \w/ \[$(tput sgr0)$(tput setaf 47)\]\[$(tput sgr0)\] "
 PS1="\[$(tput rev)$(tput setaf 39)\]"
-PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+#PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
 PS1+="\[$(tput setab 47)$(tput setaf 39)\]"
 PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
 PS1+="\[$(tput sgr0)$(tput setaf 47)\]"
@@ -64,6 +61,8 @@ export LESS="--tab=4 -~ -MRiS -j 1 --shift 4 -I"
 export PYTHONSTARTUP=~/.config/python/pystartup
 # limit displayed entries in directory hierarchy
 export PROMPT_DIRTRIM=3
+# do not save duplicate commands to shell history
+export HISTCONTROL=ignoredups
 
 ###################################################################################################
 # Key Bindings
