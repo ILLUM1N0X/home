@@ -19,29 +19,29 @@ stty -ctlecho
 ###################################################################################################
 # Prompt
 ###################################################################################################
-# print all tput colors
-# for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
-PS1="\[$(tput setaf 118)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
-#export PS1="\[$(tput setaf 76)$(tput setab 238)\]\u:\W>\[$(tput sgr0)\] "
-PS1=\
-"\[$(tput rev)$(tput setaf 39)\]\[$(tput sgr0)\]\
-\[$(tput setab 39)$(tput setaf 0)\]  \w/ \
-\$(__git_branch_prompt)\
-\[$(tput sgr0)$(tput setaf 118)\]\n❯\
-\[$(tput sgr0)\] "
 function __git_branch_prompt() {
-    local BR=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    local BR=$(git branch --show-current 2> /dev/null)
     if [[ ! -z $BR ]]; then
         # echo " $BR "
         echo " $BR "
     fi
 }
-# find more icons at: https://fontawesome.com/search
+
+# find more icons at:
+# - https://fontawesome.com/search
+# - https://fontello.com/
+# - https://fontello.com/
+# - https://www.svgrepo.com/
 # print all tput colors
 # for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
+# To add time, replace the first line with:
+# PS1="\[$(tput sgr0)$(tput setaf 196)\]\D{%H:%M} "
+# PS1+="\[$(tput rev)$(tput setaf 39)\]"
 PS1="\[$(tput rev)$(tput setaf 39)\]"
-#PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
-PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/"
+# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
 PS1+="\[$(tput setab 47)$(tput setaf 39)\]"
 PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
 PS1+="\[$(tput sgr0)$(tput setaf 47)\]"
@@ -115,6 +115,7 @@ alias      sl='ls'
 alias      ks='ls'
 alias      ,,='..'
 alias     got='git'
+alias     gut='git'
 
 ###################################################################################################
 # Functions
@@ -131,15 +132,6 @@ function cd() {
 function =() {
     args=`echo "$@" | tr '[{' '(' | tr ']}' ')'`
     perl -le "print(eval($args))"
-}
-
-function __git_branch_prompt () {
-    local BR=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    if [[ ! -z $BR ]]; then
-        echo "$(tput setab 47)$(tput setaf 39)$(tput setab 47)$(tput setaf 0)  $BR $(tput sgr0)$(tput setaf 47)"
-    else
-        echo "$(tput sgr0)$(tput setaf 39)"
-    fi
 }
 
 # function fuzzypath() {
