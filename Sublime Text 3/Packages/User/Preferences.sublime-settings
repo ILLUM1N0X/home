@@ -41,4 +41,5 @@
 	"translate_tabs_to_spaces": true,
 	"ui_scale": 1.0,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
+	"auto_complete_commit_on_tab": true,
 }
