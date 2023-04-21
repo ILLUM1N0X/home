@@ -1,5 +1,4 @@
 [
-    { "keys": ["ctrl+enter"], "command": "goto_definition" },
     { "keys": ["alt+enter"], "command": "goto_reference" },
     { "keys": ["alt+left"], "command": "jump_back" },
     { "keys": ["alt+right"], "command": "jump_forward" },
@@ -31,14 +30,14 @@
     { "keys": ["ctrl+r"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
     { "keys": ["ctrl+shift+r"], "command": "replace_next" },
     
-    { "keys": ["ctrl+space"], "command": "auto_complete" },
-    { "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete", "context":
-        [
-            { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
-            { "key": "auto_complete_visible", "operator": "equal", "operand": false },
-            { "key": "setting.tab_completion", "operator": "equal", "operand": true }
-        ]
-    },
+    // { "keys": ["ctrl+space"], "command": "auto_complete" },
+    // { "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete", "context":
+    //     [
+    //         { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+    //         { "key": "auto_complete_visible", "operator": "equal", "operand": false },
+    //         { "key": "setting.tab_completion", "operator": "equal", "operand": true }
+    //     ]
+    // },
     { "keys": ["ctrl+q"], "command": "close_window" },
     { "keys": ["ctrl+t"], "command": "new_file" },
     { "keys": ["ctrl+n"], "command": "new_window" },
@@ -95,4 +94,22 @@
     // sublime linter
     { "keys": ["ctrl+."], "command": "sublime_linter_goto_error", "args": { "direction": "next" } },
     { "keys": ["ctrl+,"], "command": "sublime_linter_goto_error", "args": { "direction": "previous" } },
+    // LSP
+    {
+        "keys": ["ctrl+enter"],
+        "command": "lsp_symbol_definition",
+        "args": {"side_by_side": false, "force_group": true, "fallback": false, "group": -1},
+        "context": [
+            {"key": "lsp.session_with_capability", "operand": "definitionProvider"},
+            {"key": "auto_complete_visible", "operand": false}
+        ]
+    },
+    {
+        "keys": ["ctrl+space"],
+        "command": "lsp_commit_completion_with_opposite_insert_mode",
+        "context": [
+            {"key": "lsp.session_with_capability", "operand": "completionProvider"},
+            {"key": "auto_complete_visible"}
+        ]
+    },
 ]
