@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+  "show_code_actions_in_hover": false,
+  "show_symbol_action_links": false,
+  "document_highlight_style": "",
+  "diagnostics_gutter_marker": "",
+  "show_diagnostics_severity_level": 0,
+}

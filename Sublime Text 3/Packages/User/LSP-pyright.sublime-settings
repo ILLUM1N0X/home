@@ -1,0 +1,26 @@
+// Settings in here override those in "LSP-pyright/LSP-pyright.sublime-settings"
+
+{
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportDuplicateImport": "none",
+    "reportImplicitStringConcatenation": "none",
+    "reportMissingParameterType": "none",
+    "reportUnboundVariable": "none",
+    "reportUninitializedInstanceVariable": "none",
+    "reportUnusedClass": "none",
+    "reportUnusedFunction": "none",
+    "reportUnusedImport": "none",
+    "reportUnusedVariable": "none",
+  },
+  "python.analysis.typeCheckingMode": "off",
+  // https://github.com/sublimelsp/LSP-pylsp#running-alongside-lsp-pyright
+  "disabled_capabilities": {
+        // "definitionProvider": true,
+        "documentHighlightProvider": true,
+        "documentSymbolProvider": true,
+        "hoverProvider": true,
+        // "referencesProvider": true,
+        "renameProvider": true,
+        "signatureHelpProvider": true,
+    },
+}
