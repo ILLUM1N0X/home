@@ -5,8 +5,10 @@
         "**/.pytest_cache": true,
         "**/*.egg-info": true,
     },
+
     "breadcrumbs.showProperties": false,
     "breadcrumbs.showVariables": false,
+
     "editor.codeLens": false,
     "editor.colorDecorators": false,
     "editor.cursorBlinking": "solid",
@@ -23,15 +25,33 @@
     "editor.stickyScroll.enabled": true,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.find.addExtraSpaceOnTop": false,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.mouseWheelScrollSensitivity": 0.5,
+    "editor.roundedSelection": false,
+    "editor.glyphMargin": false,
+    "editor.showUnused": false,
+    "editor.detectIndentation": false,
+    "editor.parameterHints.enabled": false,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "off"
+    },
+
     "outline.problems.badges": false,
     "outline.problems.colors": false,
     "outline.problems.enabled": false,
     "outline.showProperties": false,
     "outline.showVariables": false,
+
     "problems.decorations.enabled": false,
+
     "security.workspace.trust.untrustedFiles": "open",
+
     "workbench.tree.indent": 16,
-    "workbench.settings.useSplitJSON": true,
+    "workbench.settings.openDefaultKeybindings": true,
+    "workbench.settings.openDefaultSettings": true,
     "workbench.enableExperiments": false,
     "workbench.editor.tabSizing": "shrink",
     "workbench.activityBar.visible": false,
@@ -41,6 +61,7 @@
     "workbench.startupEditor": "none",
     "workbench.editor.tabCloseButton": "off",
     "workbench.colorTheme": "Mariana Pro (Cool)",
+    "workbench.list.mouseWheelScrollSensitivity": 0.5,
     "workbench.colorCustomizations": {
         "editorError.foreground": "#00000000",
         "editorWarning.foreground": "#00000000",
@@ -51,21 +72,12 @@
         "editor.selectionHighlightBorder": "#FFFA",
         "editor.symbolHighlightBackground": "#00000000"
     },
-    "editor.mouseWheelScrollSensitivity": 0.5,
-    "editor.roundedSelection": false,
-    "editor.glyphMargin": false,
-    "editor.showUnused": false,
-    "editor.parameterHints.enabled": false,
-    "editor.quickSuggestions": {
-        "other": "on",
-        "comments": "off",
-        "strings": "off"
-    },
+
     "python.analysis.typeCheckingMode": "off",
     "python.analysis.diagnosticSeverityOverrides": {
-        // "reportMissingImports": "none"
+        "reportMissingImports": "none"
     },
     "[python]": {
         "editor.tabSize": 2
-    },
+    }
 }
