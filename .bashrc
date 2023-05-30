@@ -8,7 +8,7 @@ set -o ignoreeof
 stty -ctlecho
 # enable glob extended pattern matching
 shopt -s extglob
-#
+# unbind the original behavior of C-w
 stty werase undef
 
 ################################################################################
