@@ -1,33 +1,30 @@
-###################################################################################################
-# Mine
-###################################################################################################
-# tab completion does not list hidden files
-bind 'set match-hidden-files off'
-# tab completion works with one tab
-bind 'set show-all-if-ambiguous on'
-# tab completion ignores case
-bind 'set completion-ignore-case off'
-# tab completion recognizes directories in symbolic links
-bind 'set mark-symlinked-directories on'
-# pasting does not highlight text
-bind "set enable-bracketed-paste off"
+################################################################################
+# Miscellaneous
+################################################################################
+complete -I -F _command_completions -o bashdefault
 # send EOF after the 11th Ctrl-D
 set -o ignoreeof
 # disable '^C' from being echoed when pressing Ctrl-C
 stty -ctlecho
+# enable glob extended pattern matching
+shopt -s extglob
+#
+stty werase undef
 
-###################################################################################################
+################################################################################
 # Prompt
-###################################################################################################
+################################################################################
 function __git_branch_prompt() {
     local BR=$(git branch --show-current 2> /dev/null)
     if [[ ! -z $BR ]]; then
+        # echo "󰘬 $BR "
         # echo " $BR "
         echo " $BR "
     fi
 }
 
 # find more icons at:
+# - https://www.nerdfonts.com/cheat-sheet
 # - https://fontawesome.com/search
 # - https://fontello.com/
 # - https://fontello.com/
@@ -47,9 +44,9 @@ PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
 PS1+="\[$(tput sgr0)$(tput setaf 47)\]"
 PS1+="\[$(tput sgr0)\] "
 
-###################################################################################################
+################################################################################
 # Environment Variables
-###################################################################################################
+################################################################################
 # prompt
 export PS1
 # do not complete commands from Windows
@@ -64,13 +61,13 @@ export PROMPT_DIRTRIM=3
 # do not save duplicate commands to shell history
 export HISTCONTROL=ignoredups
 
-###################################################################################################
-# Key Bindings
-###################################################################################################
+################################################################################
+# Bindings
+################################################################################
 # Notes:
 # - To print all commands: bind -l
 # - To print which keys are bound to a specific command: bind -q <command>
-stty werase undef
+# bind -x '"\C-w":    proper-kill-word'    # Ctrl-W
 bind '"\C-w":    backward-kill-word'      # Ctrl-W
 bind '"\C-h":    backward-kill-word'      # Ctrl-H/Ctrl-Backspace
 bind '"\e[3;5~": kill-word'               # Ctrl-Delete
@@ -81,10 +78,20 @@ bind '"\e[1;5B": history-search-forward'  # Ctrl-Down arrow
 bind '"\C-r":    insert-last-argument'    # Ctrl-R
 bind '"\C-f":    alias-expand-line'       # Ctrl-F
 bind '"\C-x":    shell-expand-line'       # Ctrl-X
+# tab completion does not list hidden files
+bind 'set match-hidden-files off'
+# tab completion works with one tab
+bind 'set show-all-if-ambiguous on'
+# tab completion ignores case
+bind 'set completion-ignore-case off'
+# tab completion recognizes directories in symbolic links
+bind 'set mark-symlinked-directories on'
+# pasting does not highlight text
+bind "set enable-bracketed-paste off"
 
-###################################################################################################
+################################################################################
 # Aliases
-###################################################################################################
+################################################################################
 alias       l='less'
 alias       g='grep -sEI --color=always'
 alias      gi='g -i'
@@ -107,31 +114,37 @@ alias    echo='echo -e'
 alias       i='item'
 alias     hlp='subl -n ~/hlp'
 alias     upd='sudo apt update && sudo apt upgrade -y'
+alias     ff='fd --type f .'
 
-###################################################################################################
+################################################################################
 # Typos
-###################################################################################################
+################################################################################
 alias      sl='ls'
 alias      ks='ls'
 alias      ,,='..'
 alias     got='git'
 alias     gut='git'
 
-###################################################################################################
+################################################################################
 # Functions
-###################################################################################################
-function ff() {
-    local ARGS=$([[ $# == 0 ]] && echo "." || echo "$@")
-    eval find "$ARGS" -type f
+################################################################################
+# function ff() {
+#     local ARGS=$([[ $# == 0 ]] && echo "." || echo "$@")
+#     eval find "$ARGS" -type f
+# }
+
+function _command_completions() {
+  # cod<tab> completes to codium
+  [[ $2 == cod* ]] && COMPREPLY="codium"
 }
 
 function cd() {
     builtin cd "$@" && ls
 }
 
-function =() {
-    args=`echo "$@" | tr '[{' '(' | tr ']}' ')'`
-    perl -le "print(eval($args))"
+function proper-kill-word() {
+    READLINE_LINE=$(sed 's|[^ /.-]*[ /.-]*$||' <<< $READLINE_LINE)
+    READLINE_POINT=${#READLINE_LINE}
 }
 
 # function fuzzypath() {
