@@ -68,26 +68,31 @@ export HISTCONTROL=ignoredups
 # - To print all commands: bind -l
 # - To print which keys are bound to a specific command: bind -q <command>
 # bind -x '"\C-w":    proper-kill-word'    # Ctrl-W
-bind '"\C-w":    backward-kill-word'      # Ctrl-W
-bind '"\C-h":    backward-kill-word'      # Ctrl-H/Ctrl-Backspace
-bind '"\e[3;5~": kill-word'               # Ctrl-Delete
-bind '"\e[1;5D": backward-word'           # Ctrl-Left arrow
-bind '"\e[1;5C": forward-word'            # Ctrl-Right arrow
-bind '"\e[1;5A": history-search-backward' # Ctrl-Up arrow
-bind '"\e[1;5B": history-search-forward'  # Ctrl-Down arrow
-bind '"\C-r":    insert-last-argument'    # Ctrl-R
-bind '"\C-f":    alias-expand-line'       # Ctrl-F
-bind '"\C-x":    shell-expand-line'       # Ctrl-X
-# tab completion does not list hidden files
-bind 'set match-hidden-files off'
-# tab completion works with one tab
-bind 'set show-all-if-ambiguous on'
-# tab completion ignores case
-bind 'set completion-ignore-case off'
-# tab completion recognizes directories in symbolic links
-bind 'set mark-symlinked-directories on'
-# pasting does not highlight text
-bind "set enable-bracketed-paste off"
+# bind '"\C-w":    unix-filename-rubout'
+# Apply on if the shell is interactive:
+# https://www.gnu.org/software/bash/manual/bash.html#Is-this-Shell-Interactive_003f
+if [[ $- == *i* ]]; then
+    bind '"\C-w":    backward-kill-word'      # Ctrl-W
+    bind '"\C-h":    backward-kill-word'      # Ctrl-H/Ctrl-Backspace
+    bind '"\e[3;5~": kill-word'               # Ctrl-Delete
+    bind '"\e[1;5D": backward-word'           # Ctrl-Left arrow
+    bind '"\e[1;5C": forward-word'            # Ctrl-Right arrow
+    bind '"\e[1;5A": history-search-backward' # Ctrl-Up arrow
+    bind '"\e[1;5B": history-search-forward'  # Ctrl-Down arrow
+    bind '"\C-r":    insert-last-argument'    # Ctrl-R
+    bind '"\C-f":    alias-expand-line'       # Ctrl-F
+    bind '"\C-x":    shell-expand-line'       # Ctrl-X
+    # tab completion does not list hidden files
+    bind 'set match-hidden-files off'
+    # tab completion works with one tab
+    bind 'set show-all-if-ambiguous on'
+    # tab completion ignores case
+    bind 'set completion-ignore-case off'
+    # tab completion recognizes directories in symbolic links
+    bind 'set mark-symlinked-directories on'
+    # pasting does not highlight text
+    bind "set enable-bracketed-paste off"
+fi
 
 ################################################################################
 # Aliases
