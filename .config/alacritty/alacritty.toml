@@ -1,0 +1,99 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#676965"
+blue = "#83afd8"
+cyan = "#37e5e7"
+green = "#98e342"
+magenta = "#bc93b6"
+red = "#f44135"
+white = "#f1f1ef"
+yellow = "#fcea60"
+
+[colors.cursor]
+cursor = "#f44135"
+text = "#ffffff"
+
+[colors.normal]
+black = "#000000"
+blue = "#0f4072"
+cyan = "#00a7aa"
+green = "#5da602"
+magenta = "#88658d"
+red = "#d71e00"
+white = "#dbded8"
+yellow = "#cfad00"
+
+[colors.primary]
+background = "#2a2a2a"
+foreground = "#dedede"
+
+[colors.selection]
+background = "#c1ddff"
+text = "#000000"
+
+[font]
+size = 15.5
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Medium"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font Mono"
+style = "Medium"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Medium"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Medium"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "exit"
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013x"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013p"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013n"
+key = "Right"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013j"
+key = "Left"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0013k"
+key = "Right"
+mods = "Command|Shift"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 0.85
