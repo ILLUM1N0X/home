@@ -31,18 +31,25 @@ function __git_branch_prompt() {
 # - https://www.svgrepo.com/
 # print all tput colors
 # for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done | l
+
 # To add time, replace the first line with:
 # PS1="\[$(tput sgr0)$(tput setaf 196)\]\D{%H:%M} "
 # PS1+="\[$(tput rev)$(tput setaf 39)\]"
-PS1="\[$(tput rev)$(tput setaf 39)\]"
-# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/"
-# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
-# PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
-PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]  \w/ "
+
+# To add an apple logo, replace the first line with:
+# PS1="\[$(tput setab 238)$(tput setaf 15)\]  "
+# PS1+="\[$(tput rev)$(tput setaf 39)\]"
+
+PS1="\[$(tput setaf 39)\]"
+PS1+="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]\w/ "
 PS1+="\[$(tput setab 47)$(tput setaf 39)\]"
 PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
 PS1+="\[$(tput sgr0)$(tput setaf 47)\]"
 PS1+="\[$(tput sgr0)\] "
+
+# PS1="\[$(tput sgr0)$(tput setab 39)$(tput setaf 0)\]   \w/ "
+# PS1+="\[$(tput setab 47)$(tput setaf 0)\] \$(__git_branch_prompt)"
+# PS1+="\[$(tput sgr0)\] "
 
 ################################################################################
 # Environment Variables
