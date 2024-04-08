@@ -53,6 +53,10 @@ family = "FiraCode Nerd Font Mono"
 style = "Medium"
 
 [[keyboard.bindings]]
+key = "NumpadEnter"
+chars = "\n"
+
+[[keyboard.bindings]]
 action = "Paste"
 key = "V"
 mods = "Control"
@@ -73,6 +77,11 @@ key = "W"
 mods = "Command"
 
 [[keyboard.bindings]]
+chars = "\u0013d"
+key = "D"
+mods = "Command"
+
+[[keyboard.bindings]]
 chars = "\u0013p"
 key = "Left"
 mods = "Command"
@@ -83,12 +92,42 @@ key = "Right"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0013j"
+chars = "\u0013q"
 key = "Left"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
+chars = "\u0013%"
+key = "Right"
+mods = "Control|Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0013h"
+key = "Left"
+mods = "Control|Command"
+
+[[keyboard.bindings]]
+chars = "\u0013j"
+key = "Up"
+mods = "Control|Command"
+
+[[keyboard.bindings]]
 chars = "\u0013k"
+key = "Down"
+mods = "Control|Command"
+
+[[keyboard.bindings]]
+chars = "\u0013l"
+key = "Right"
+mods = "Control|Command"
+
+[[keyboard.bindings]]
+chars = "\u0013\""
+key = "Down"
+mods = "Control|Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0013e"
 key = "Right"
 mods = "Command|Shift"
 
@@ -97,3 +136,13 @@ save_to_clipboard = true
 
 [window]
 opacity = 0.85
+
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+mouse.mods = "Command"
+#binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
