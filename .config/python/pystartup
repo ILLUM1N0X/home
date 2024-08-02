@@ -1,13 +1,27 @@
+"""
+Python startup file that saves history and sets some keybindings.
+
+Note:
+This assumes you're using GNU readline. To check, run:
+```python -c 'import readline; print(readline.__doc__)'```
+If the output says you're using GNU, you're good to go. Otherwise:
+```pip install gnureadline```
+Then replace `readline` with `gnureadline`:
+```python -m override_readline```
+For more details, see: https://github.com/ludwigschwardt/python-gnureadline
+"""
 import atexit
 import os
 import readline
-import rlcompleter
+import readline
 
 historyPath = os.path.expanduser("~/.pyhistory")
 readline.parse_and_bind('"\e[1;5D": backward-word')
 readline.parse_and_bind('"\e[1;5C": forward-word')
 readline.parse_and_bind('"\e[1;5A": history-search-backward')
 readline.parse_and_bind('"\e[1;5B": history-search-forward')
+readline.parse_and_bind('tab: complete')
+readline.set_completer(readline.get_completer())
 
 def save_history(historyPath=historyPath):
     import readline
@@ -17,4 +31,4 @@ if os.path.exists(historyPath):
     readline.read_history_file(historyPath)
 
 atexit.register(save_history)
-del os, atexit, readline, rlcompleter, save_history, historyPath
+del os, atexit, readline, save_history, historyPath
